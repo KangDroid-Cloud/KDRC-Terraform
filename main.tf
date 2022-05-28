@@ -4,28 +4,6 @@ provider "helm" {
     }
 }
 
-provider "kubernetes" {
-    config_path = "~/.kube/config"
-}
-
-variable "target_namespace" {
-    description = "Namespace to deploy cloud in."
-    type = string
-    nullable = false
-}
-
-variable "kangdroid_repository" {
-    description = "KangDroid-Cloud Repository"
-    type = string
-    default = "https://kangdroid-cloud.github.io/chart/release"
-}
-
-resource "kubernetes_namespace_v1" "target-namespace" {
-    metadata {
-      name = var.target_namespace
-    }
-}
-
 resource "helm_release" "kangdroid-cloud-core" {
     name = "kdrc-core"
     namespace = var.target_namespace
