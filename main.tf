@@ -19,7 +19,7 @@ resource "helm_release" "kangdroid-cloud-common-config" {
 
     repository = var.kangdroid_repository
     chart = "kdrc-common-config"
-    version = "0.1.0"
+    version = "0.1.1"
 }
 
 resource "helm_release" "kangdroid-cloud-mongodb" {
