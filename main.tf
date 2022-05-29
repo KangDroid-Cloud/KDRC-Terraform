@@ -11,6 +11,16 @@ resource "helm_release" "kangdroid-cloud-core" {
     repository = var.kangdroid_repository
     chart = "kdrc-core-chart"
     version = "0.1.1"
+
+    set {
+        name = "image.environment"
+        value = "test"
+    }
+
+    set {
+        name = "image.version"
+        value = "latest"
+    }
 }
 
 resource "helm_release" "kangdroid-cloud-common-config" {
@@ -19,7 +29,12 @@ resource "helm_release" "kangdroid-cloud-common-config" {
 
     repository = var.kangdroid_repository
     chart = "kdrc-common-config"
-    version = "0.1.1"
+    version = "0.1.2"
+
+    set {
+        name = "RabbitMq.Host"
+        value = "rabbitmq-service"
+    }
 }
 
 resource "helm_release" "kangdroid-cloud-mongodb" {
@@ -28,5 +43,14 @@ resource "helm_release" "kangdroid-cloud-mongodb" {
 
     repository = var.kangdroid_repository
     chart = "mongodb-test"
+    version = "0.1.1"
+}
+
+resource "helm_release" "kangdroid-cloud-rabbitmq" { 
+    name = "kdrc-rabbitmq-release"
+    namespace = var.target_namespace
+
+    repository = var.kangdroid_repository
+    chart = "kdrc-rabbitmq"
     version = "0.1.0"
 }
