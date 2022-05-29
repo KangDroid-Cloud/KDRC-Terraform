@@ -10,7 +10,7 @@ resource "helm_release" "kangdroid-cloud-core" {
 
     repository = var.kangdroid_repository
     chart = "kdrc-core-chart"
-    version = "0.1.1"
+    version = "0.1.2"
 
     set {
         name = "image.environment"
@@ -20,6 +20,11 @@ resource "helm_release" "kangdroid-cloud-core" {
     set {
         name = "image.version"
         value = "latest"
+    }
+
+    set {
+        name = "port"
+        value = var.target_port
     }
 }
 

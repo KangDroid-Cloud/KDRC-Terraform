@@ -9,3 +9,9 @@ variable "target_namespace" {
     type = string
     nullable = false
 }
+
+variable "target_port" {
+    description = "THe port to access core services"
+    type = string
+    default = 31000
+}
