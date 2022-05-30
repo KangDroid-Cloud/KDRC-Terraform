@@ -59,3 +59,12 @@ resource "helm_release" "kangdroid-cloud-rabbitmq" {
     chart = "kdrc-rabbitmq"
     version = "0.1.0"
 }
+
+resource "helm_release" "kangdroid-cloud-kube-support" {
+    name = "kdrc-kubernetes-support"
+    namespace = var.target_namespace
+
+    repository = var.kangdroid_repository
+    chart = "kube"
+    version = "0.1.0"  
+}
